@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>GOOGLE PLACES</title>
+    <style>
+        #mapArea{
+            height: 500px;
+            width: 500px;
+        }
+    </style>
+    <script src="http://apijsv2.viamichelin.com/apijsv2/api/js?key=JSV2GP20181226095838858167790317$165380
+&lang=en"
+        type="text/javascript"> </script>
+</head>
+
+<body>
+
+    <h1>Recherche de POIs sur des coordonnées</h1>
+    <p>Recherche de lieux centrée sur Paris</p>
+    <button id="launch">Lancer la recherche</button>
+
+    <pre id="output"></pre>
+
+    <script type="text/javascript">
+        var output = $_id("output"),
+            search = function () {
+                output.innerHTML = "";
+                var conf = {
+                    db: "164660",
+                    service: ViaMichelin.Api.Constants.Poi.SERVICE_TYPE.FIND_POI,
+                    center: {
+                        lon: 2.35107,
+                        lat: 48.85684
+                    }
+                };
+                var displayError = function () {
+                    output.innerHTML = "<div>Une erreur s'est produite.</div>";
+                };
+                var callbacks = {
+                    onSuccess: function (results) {
+                        var outputHTML, i, item, poi;
+                        outputHTML = results.poiList.length + " résultats trouvés.";
+                        for (i = 0; i < results.poiList.length; i++) {
+                            item = results.poiList[i];
+                            poi = item.poi;
+                            outputHTML += "\n- " + poi.name + " (à " + item.dist + "m)";
+                        }
+                        output.innerHTML = outputHTML;
+                    },
+                    onError: displayError,
+                    onInitError: displayError
+                };
+                VMLaunch("ViaMichelin.Api.Poi", conf, callbacks);
+            };
+        $_id("launch").onclick = search;
+
+    </script>
+</body>
+
+</html>
