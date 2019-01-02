@@ -11,6 +11,10 @@
             height: 500px;
             width: 500px;
         }
+        img{
+            width: 200px;
+        }
+
     </style>
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDpPH17CXv14EkaOqZlGQuiUAyCpw18P6M&libraries=places">
     </script>
@@ -28,9 +32,9 @@
     <div id="result"></div>
     <script type="text/javascript">
         var miam, myLocation, map, interest, service, infowindow, lat, long, latlong, marker, contentString; //Déclaration des variables en global scope
-        var distance = 500; //Cette valeur est en brut pour tester la recherche sur 500m
+        var distance = 1000; //Cette valeur est en brut pour tester la recherche sur 500m
         var markers = []; // C'est un array qui me permettra de clear la map plus tard
-
+        var restaurants = [];
 
         window.onload = function () {
             drawMap();
@@ -78,6 +82,7 @@
             for (var i = 0; i < markers.length; i++) {
                 markers[i].setMap(map);
             }
+
         }
         // Vide la map des marker et vide l'array.
         function deleteMarkers() {
@@ -105,6 +110,7 @@
                 success: function (data) {
 
 
+
                     // Grab the results from the API JSON return
                     var totalresults = data.total;
                     // If our results are greater than 0, continue
@@ -128,30 +134,59 @@
                         alert("Aucun résultats :(")
                     }
                     for (i = 0; i < data.businesses.length; i++) {
-                        var restoName = data.businesses[i].name
+                        var restoName = data.businesses[i].name;
+                        var distanceResto = data.businesses[i].distance.toFixed(0);
+                        var adressResto = data.businesses[i].location.display_address;
+                        var photoResto = data.businesses[i].image_url;
+                        var phoneResto = data.businesses[i].display_phone;
+                        var priceResto = data.businesses[i].price;
+                        var noteResto = data.businesses[i].rating;
+                        console.log(distanceResto);
+                        //Les restaurants sont mis dans l'ordre de distance
+                        /* restaurants.push(distanceResto);
+                        restaurants.sort(function (a, b) { return a - b });
+                        console.log(restaurants); */
+
                         document.getElementById("result").innerHTML += data.businesses[i].name + " lati :  " + data.businesses[i].coordinates.latitude + " longi : " + data.businesses[i].coordinates.longitude + "<br>";
 
                         //Differents console log pour des test :
-                        //console.log(data);
                         //console.log(data.businesses.length);
                         //console.log(restoName);
 
-                        contentString = "<div id=bulleInfo>Nom du resto : " + restoName + "</div>"; //On definit ce qui sera affiché lors du click. On peut appliquer du CSS sur cette div =)
-                        createMarker(data.businesses[i], restoName);
+                        contentString = "<div id=bulleInfo>Nom du resto : " + restoName + " " + distanceResto + "</div>"; //On definit ce qui sera affiché lors du click. On peut appliquer du CSS sur cette div =)
+                        createMarker(data.businesses[i], restoName, distanceResto, adressResto, photoResto, phoneResto, priceResto, noteResto);
                     }
+                    console.log(data);
+
+                    
                 }
+                
             });
         };
+        
+
+
         //La fonction createMarker, crée des markers. Je sais c'est dingue !
-        function createMarker(place, placeName) {
+        function createMarker(place, placeName, distance, address, photo, phone, price, note) {
+            
+
+            var contenuInfoBulle = '<h1>' + placeName + " (" + distance + "m)" + '</h1>' +
+                '<h4>' + price + " " + note + "/5" + '</h4>' +
+                '<p>' + address + '</p>' +
+                '<p>' + phone + '</p>' +
+                '<img src="' + photo + '"/>';
+
+            
             latlong = new google.maps.LatLng(place.coordinates.latitude, place.coordinates.longitude);
             marker = new google.maps.Marker({
                 position: latlong,
-                map: map
+                map: map,
+                title: placeName + " à " + distance + "m"
             });
+
             markers.push(marker);
             google.maps.event.addListener(marker, 'click', function () {
-                infowindow.setContent(placeName);
+                infowindow.setContent(contenuInfoBulle);
                 infowindow.open(map, this);
             });
         };
