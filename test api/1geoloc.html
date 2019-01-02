@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Géolocation</title>
+</head>
+<body>
+    <div id="result"></div>
+    <button type="button" id="getPosition" onclick="getPosition()">TROUVE MOI</button>
+
+    <script type="text/javascript">
+        function getPosition(){
+            if(navigator.geolocation){
+                navigator.geolocation.getCurrentPosition(successPosition);
+            } else {
+                document.getElementById('id').innerHTML="Your navigator doesn't support geolocation. :(";
+            }
+        }
+        function successPosition(position){ //position est une variable de mon choix
+            var lat = position.coords.latitude;
+            var long = position.coords.longitude;
+           // console.log(lat);
+           // console.log(long);
+            document.querySelector('#result').innerHTML= "Latitude :"+lat+" <br> Longitude :"+long;
+            // alert("Altitude :"+position.coords.altitude); marche pô
+            // alert("Direction :"+position.coords.heading);
+            // alert("Direction :"+position.coords.speed);
+            
+            
+        }
+    </script>
+</body>
+</html>
