@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>GOOGLE PLACES</title>
+    <style>
+        #mapArea{
+            height: 500px;
+            width: 500px;
+        }
+    </style>
+    <script
+    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDpPH17CXv14EkaOqZlGQuiUAyCpw18P6M&libraries=places">
+  </script>
+</head>
+<body>
+    <select name="" id="interest" onchange="getLocations()">
+        <option value="default">Select your interest</option>
+        <option value="restaurant">Restaurant</option>
+        <option value="parking">Parking</option>
+        <option value="hotel">Hotel</option>
+    </select>
+    distance
+    <select name="" id="distance" onchange="getLocations()">
+        <option value="500">500 Meters</option>
+        <option value="1000">1000 Meters</option>
+        <option value="2000">2000 Meters</option>
+    </select>
+    <div id="mapArea"></div>
+    <script type="text/javascript">
+        var myLocation, map, interest, distance, service, infowindow;
+        window.onload=function(){
+            drawMap();
+        }
+        function drawMap(){
+            if(navigator.geolocation){
+                navigator.geolocation.getCurrentPosition(onSuccess, onError,{
+                    maximumAge:2*60*1000, 
+                    timeout:5*60*1000, 
+                    enableHighAccuracy : true}
+                );
+            }else{
+                alert ('Your navigator hates you');
+            }
+        }
+        function onSuccess(position){
+            var lat = position.coords.latitude;
+            var long = position.coords.longitude;
+            myLocation = new google.maps.LatLng(lat,long);
+            var mapOption={
+                center: myLocation,
+                zoom : 13,
+                mapTypeId: google.maps.MapTypeId.ROADMAP
+            };
+            map = new google.maps.Map(document.querySelector("#mapArea"),mapOption);
+            infowindow = new google.maps.InfoWindow();
+        }
+        function onError(){
+            switch (error,code){
+                case PERMISSION_DENIED:
+                    alert("Permission was denied");
+                    break;
+                case TIMEOUT:
+                    alert("Connection timed out");
+                    break;
+                default:
+                    alert("Unknown error");
+                    break;
+            }
+        }
+        function getLocations(){
+            interest = document.querySelector("#interest").value;
+            distance = document.querySelector("#distance").value;
+            console.log(interest);
+            console.log(distance);
+            if(interest == "default"){
+                alert ("Select an option");
+            }else{
+                var request = {
+                location: myLocation,
+                radius: distance,
+                type: [interest]
+                };
+                service = new google.maps.places.PlacesService(map);
+                service.nearbySearch(request, callback);
+            }
+            
+        }
+        function callback(results, status) {
+            if (status == google.maps.places.PlacesServiceStatus.OK) {
+                for (var i = 0; i < results.length; i++) {
+                    var place = results[i];
+                    createMarker(results[i]);
+                }
+            }
+        }
+        function createMarker(place) {
+            var placeLoc = place.geometry.location;
+            var marker = new google.maps.Marker({
+            map: map,
+            position: place.geometry.location
+            });
+
+            google.maps.event.addListener(marker, 'click', function() {
+            infowindow.setContent(place.name);
+            infowindow.open(map, this);
+            });
+        }
+    </script>
+</body>
+</html>

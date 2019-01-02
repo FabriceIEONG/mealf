@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Geolocalisation statique</title>
+    <style>
+        #mapZone{
+            height: 500px;
+            width: 500px;
+        }
+    </style>
+    <script
+    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDpPH17CXv14EkaOqZlGQuiUAyCpw18P6M">
+  </script>
+    <!-- <script src="INSERE TON LIEN + CLÉ Google map"></script> -->
+</head>
+<body>
+    <div id="mapZone"></div>
+    <script type="text/javascript">
+        var watchId, startLat, startLong;
+        window.onload = function(){
+            if(navigator.geolocation){
+                watchId = navigator.geolocation.watchPosition(onSuccess,onError,{maximumAge:2*60*1000, timeout:5*60*1000, enableHighAccuracy : true});
+            }
+        }
+        function onSuccess(position){
+            var currentLat = position.coords.latitude;
+            var currentLong = position.coords.longitude;
+            startLat = currentLat;
+            startLong = currentLong;
+            var mapOptions = {
+                center:new google.maps.LatLng(startLat,startLong),
+                zoom:17,
+                mapTypeId: google.maps.MapTypeId.ROADMAP
+            };
+            var map = new google.maps.Map($_id('mapZone'),mapOptions);
+            var latlong = new google.maps.LatLng(currentLat,currentLong);
+            var marker = new google.maps.Marker({
+                position:latlong,
+                map:map
+            });
+        }
+        function onError(){
+            switch (error,code){
+                case PERMISSION_DENIED:
+                    alert("Permission was denied");
+                    break;
+                case TIMEOUT:
+                    alert("Connection timed out");
+                    break;
+                default:
+                    alert("Unknown error");
+                    break;
+            }
+        }
+    </script>
+</body>
+</html>
