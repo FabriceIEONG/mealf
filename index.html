@@ -29,14 +29,14 @@
 	      		</div>	
   			</div>
 	    	<div class="icones d-inline-flex flex-column">
-		        <a href="compte.html"><img src="css/img/profil.svg" alt="icone d'un bonhomme"></a>
-		        <img src="css/img/filtre.svg" alt="icone d'un filtre">
-		        <img src="css/img/loupe.svg" alt="icone d'une loupe">
+		        <img src="img/profil.svg" alt="icone d'un bonhomme" data-toggle="modal" data-target="#modalConnexion">
+		        <img src="img/filtre.svg" alt="icone d'un filtre">
+		        <img src="img/loupe.svg" alt="icone d'une loupe">
 	      	</div> 
 	    </header>
 
     <div class="container-fluid">
-    	<div class="row first-row d-flex justify-content-center mt-3 ">
+    	<div class="row first-row d-flex justify-content-center mt-5">
         	<p class="span-1 ">Fait</p>
             <p><span class="span-2">Déflier</span> <span class="span-3">et</span> <span class="span-4">choisis</span></p> 
     	</div>
@@ -45,13 +45,13 @@
         	<div class="mt-4 bloc">
           		<p>TYPE de PLAT</p>
           		<div class="line"></div>
-         		<img src="css/img/1.jpg" alt="image d'un plat" class="img-fluid">
+         		<img src="img/1.jpg" alt="image d'un plat" class="img-fluid">
           		<div class="background-info">
             		<div class="w-100"> 
               			<p id="nomPlat">Tabernas summatim<br><span id="prixPlat">12€</span></p>
             		</div>
             		<div class="flex-shrink-1"> 
-              			<a href="produit.html"><button type="button" class="btn">VOIR</button></a>
+              			<a href="produit.html"><button type="button" class="btn animated infinite pulse">VOIR</button></a>
             		</div>
           		</div> 
       		</div>
@@ -78,21 +78,74 @@
         <footer>
           <p>© MEAL'F</p>
           <div class="rs d-flex justify-content-center">
-            <img src="css/img/facebook.png" alt="logo de facebook">
-            <img src="css/img/twitter.png" alt="logo de twitter">
-            <img src="css/img/insta.png" alt="logo de instagram">
-            <a href="contact.html"><img src="img/question.png" alt="icone question"></a>
+            <a href=""><img src="img/facebook.png" alt="logo de facebook"></a>
+            <a href=""><img src="img/twitter.png" alt="logo de twitter"></a>
+            <a href=""><img src="img/insta.png" alt="logo de instagram"></a>
+            <img src="img/question.png" alt="icone question" data-toggle="modal" data-target="#modalQuestion">
           </div>
         </footer>
 
-     
+<!--/*MODAL CONNEXION*/  -->
+    	<div class="modal animated zoomIn" id="modalConnexion" tabindex="-1" role="dialog" aria-labelledby="modalConnexionLabel" aria-hidden="true">
+	  		<div class="modal-dialog" role="document">
+	    		<div class="modal-content connexion">
+	      			<div class="modal-header">
+	        			<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+	          				<span aria-hidden="true">&times;</span>
+	        			</button>
+	      			</div>
+	      			<div class="modal-body d-flex align-items-center">
+	      				<p>Pour<br><span>PROFITER </span>pleinement<br><span class="mb-2">connecte-toi</span></p>
+	      				<input type="text" placeholder="Email" class="mt-4">
+	      				<input type="password" placeholder="Mot de passe" class="mt-4">
+						<button type="button" class="btn1 mt-5">Connexion</button>
+	      				<button type="button" class="btn2 mt-3" data-toggle="modal" data-target="#modalCreation">Créer un compte</button>
+					</div>
+	    		</div>
+	  		</div>
+		</div>
 
+<!--/*MODAL QUESTION*/  -->
+		<div class="modal animated slideInUp" id="modalQuestion" tabindex="-1" role="dialog" aria-labelledby="modalQuestionLabel" aria-hidden="true">
+	  		<div class="modal-dialog" role="document">
+	    		<div class="modal-content question">
+	      			<div class="modal-header modal-question">
+	        			<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+	          				<span aria-hidden="true">&times;</span>
+	        			</button>
+	      			</div>
+	      			<div class="modal-body d-flex align-items-center">
+	      				<div class="text">
+	      					<p>Une <span>QUESTION </span>?<br><span class="mb-2">écris-nous</span></p>
+	      				</div>
+	      				<input type="text" placeholder="Email" class=" mt-4">
+	      				<textarea class=" mt-4" rows="5" cols="33">Ton message</textarea> 
+	      				<button type="submit" value="Submit" class=" btn2 btn3 mt-3">Envoyer</button>
+					</div>
+	    		</div>
+	  		</div>
+		</div>
 
-
-   
-
-
-    
+<!--/*MODAL CREATION*/  -->
+    	<div class="modal animated zoomIn" id="modalCreation" tabindex="-1"role="dialog" aria-labelledby="modalCreationLabel" aria-hidden="true">
+	  		<div class="modal-dialog" role="document">
+	    		<div class="modal-content creation">
+	      			<div class="modal-header">
+	        			<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+	          				<span aria-hidden="true">&times;</span>
+	        			</button>
+	      			</div>
+	      			<div class="modal-body d-flex align-items-center">
+	      				<p>Pour<br><span>PROFITER </span>pleinement<br>crée toi <span class="mb-2">un compte</span></p>
+	      				<input type="text" placeholder="Prénom" class="mt-4">
+	      				<input type="text" placeholder="Email" class="mt-4">
+	      				<input type="text" placeholder="Confirme ton email" class="mt-4">
+	      				<input type="password" placeholder="Mot de passe" class="mt-4">
+	      				<button type="button" class="btn2 mt-5">Valider</button>
+					</div>
+	    		</div>
+	  		</div>
+		</div>
 
 <!-- JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->

@@ -1,18 +1,18 @@
 /*PAGE INDEX*/
-
 *{
 	margin: 0; 
 	padding: 0; 
 }
 
 .index-background{
-	background: url(css/img/body-backgroung.jpg) fixed; 
+	background: url(img/body-backgroung.jpg) fixed; 
 	font-family: 'Roboto', sans-serif;
+	color: #fff;
 }
 /*HEADER*/
 
 header{
-	background: url('css/img/banner.jpg') fixed ;
+	background: url('img/banner.jpg') fixed ;
 	background-size: cover; 
 	height: 300px; 
 	display: flex; 
@@ -48,6 +48,7 @@ header{
 .bloc-text-2 p{font-size: 1.2em;}
 
 span{color: #F4D03F;}
+
 .text-2{
 	color: #16A085; 
 	font-size: 1.4em; 
@@ -80,7 +81,7 @@ span{color: #F4D03F;}
 
 .first-row .span-1{
 	transform: rotate(-90deg);	
-	margin-right: -0.75em;
+	margin-right: -1em;
 	text-transform: uppercase;
 	font-size: 0.625em;
 }
@@ -173,6 +174,126 @@ footer .rs img, .help img{
 	margin-bottom: 0.625em;
 }
 
+/*MODAL CONNEXION*/ 
+::placeholder {color: rgba(255,255,255,0.55);}
+
+.connexion, .creation{ 
+	margin: 0 auto;
+	background: url(img/back-modal.jpg);
+	background-size: cover;
+	height: 700px;
+	max-width: 400px;
+	border-radius: 0px; 
+	border: none;
+	box-shadow: 0px 1px 1px 0px rgba(255,255,255,0.15);
+	-webkit-box-shadow: 0px 1px 1px 0px rgba(255,255,255,0.15);
+	-moz-box-shadow: 0px 1px 1px 0px rgba(255,255,255,0.15);
+}
+
+.modal-header{border: none;}
+
+.close{
+	text-shadow: none; 
+    opacity: 1;
+}
+
+.modal-header span {color: #ffffff;}
+
+.modal-header span:hover{color: #f4d03f;}
+
+.modal-body{
+	flex-direction: column;
+	margin-top: 95px;
+}
+
+.modal-body p{font-size: 1.5em;}
+
+.modal-body span{color: #F4D03F;}
+
+.modal-body .mb-2{
+	color: #16A085;
+	text-transform: uppercase;
+}
+
+.modal-body input{
+	border : none;
+	border-bottom: 0.5px solid #fff;
+	background-color: transparent; 
+	color: #fff;
+}
+
+.btn1, .btn2{
+	color: #fff;
+	box-shadow: 0px 1px 1px 0px rgba(255,255,255,0.15);
+	-webkit-box-shadow: 0px 1px 1px 0px rgba(255,255,255,0.15);
+	-moz-box-shadow: 0px 1px 1px 0px rgba(255,255,255,0.15);
+}
+
+.btn1 {
+	background-color: transparent; 
+	border : 1px solid #f4d03f;	
+	padding : 4px 16px;	
+}
+
+.btn2 {
+	background: linear-gradient(90deg, #f4d03f, #16a085);
+	border : none;
+	padding : 8px 20px;	
+}
+
+/*MODAL QUESTION*/
+.question{
+	margin: 0 auto;
+	max-width: 400px; 
+}
+
+.question .modal-body{
+	margin-top: 21px;
+    margin-bottom: 34px;
+}
+
+.modal-question{
+	height: 280px;
+	background: url(img/back-question.jpg);
+	background-size: cover;
+	border-radius: 0px; 
+	border: none;
+	box-shadow: 0px 1px 1px 0px rgba(255,255,255,0.15);
+	-webkit-box-shadow: 0px 1px 1px 0px rgba(255,255,255,0.15);
+	-moz-box-shadow: 0px 1px 1px 0px rgba(255,255,255,0.15);
+}
+
+.text p {
+	color: rgba(0,0,0,0.45);
+	font-size: 1.5em; 
+}
+	
+#modalQuestion ::placeholder{color: rgba(0,0,0,0.45);}
+
+textarea {
+	color: rgba(0,0,0,0.45);
+	padding-left: 8px; 
+	padding-top: 8px; 
+}
+
+#modalQuestion input{
+	border : none;
+	border-bottom: 0.5px solid rgba(0,0,0,0.45);
+    width: 76%;
+}
+
+#modalQuestion textarea{
+	border: 0.5px solid rgba(0,0,0,0.25);
+}
+
+.btn3 {padding: 4px 20px}
+
+/*MODAL CREATION*/
+.creation{
+	background: url(img/back-creation.jpg);
+	background-size: cover;
+}
+
 /*MEDIA QUERIES*/
 
 @media (min-width: 576px){ 
@@ -191,10 +312,7 @@ footer .rs img, .help img{
 }
 
 .bloc-text-2 p {font-size: 1.4em;}
-
 }
-
-/***********/
 
 @media (min-width: 992px) { 
 header{height: 600px;}
