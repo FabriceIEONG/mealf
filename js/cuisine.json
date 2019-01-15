@@ -1,0 +1,50 @@
+[
+	{
+		"nom" : "Bar",
+		"url" : "bar.jpg"
+	},
+	{
+		"nom" : "Burger",
+		"url" : "burger.jpg"
+	},
+	{
+		"nom" : "Chinois",
+		"url" : "chinois.jpg"
+	},
+	{
+		"nom": "Coréen",
+		"url": "coreen.jpg"
+	},
+	{
+		"nom": "Fastfood",
+		"url": "fastfood.jpg"
+	},
+	{
+		"nom" : "Indien",
+		"url" : "indien.jpg"
+	},
+	{
+		"nom" : "Italien",
+		"url" : "italien.jpg"
+	}, 
+	{
+		"nom" : "Japonais",
+		"url" : "japonais.jpg"
+	}, 
+	{
+		"nom": "Kebab",
+		"url": "kebab.jpg"
+	},
+	{
+		"nom": "Libannais",
+		"url": "libannais.jpg"
+	},
+	{
+		"nom": "Pizza",
+		"url": "pizza.jpg"
+	},
+	{
+		"nom": "Sandwich",
+		"url": "sandwich.jpg"
+	}
+]

@@ -1,7 +1,11 @@
 /*PAGE INDEX*/
-*{
+* {
 	margin: 0; 
 	padding: 0; 
+}
+a, a:hover {
+	text-decoration: none;
+	color: #fff;
 }
 
 .index-background{
@@ -9,7 +13,22 @@
 	font-family: 'Roboto', sans-serif;
 	color: #fff;
 }
+.index-content {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	height: 600px;
+}
+
 /*HEADER*/
+.header-index {
+	background: url('img/banner.jpg') fixed center;
+	background-size: cover;
+	height: 600px;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+}
 
 .index-body{
 	background: url('img/banner.jpg') fixed ;
@@ -100,23 +119,13 @@ span{color: #F4D03F;}
 /* CARROUSSEL */
 .car_slide { padding: 15px; }
 
-.car1 { background: url("img/1.jpg") no-repeat center; }
-.car2 { background: url("img/2.jpg") no-repeat center; }
-.car3 { background: url("img/3.jpg") no-repeat center; }
-.car4 { background: url("img/4.jpg") no-repeat center; }
-.car5 { background: url("img/5.jpg") no-repeat center; }
-.car6 { background: url("img/6.jpg") no-repeat center; }
-.car7 { background: url("img/7.jpg") no-repeat center; }
-.car8 { background: url("img/8.jpg") no-repeat center; }
-.car9 { background: url("img/9.jpg") no-repeat center; }
-.car10 { background: url("img/10.jpg") no-repeat center; }
-.car11 { background: url("img/11.jpg") no-repeat center; }
-.car12 { background: url("img/12.jpg") no-repeat center; }
-
 .car_img {
 	display: flex;
-	height: 300px;
+	height: 400px;
 	background-size: cover;
+	background-repeat: no-repeat;
+	background-position: center;
+	cursor: pointer;
 	align-items: flex-end;
 }
 
@@ -124,13 +133,31 @@ span{color: #F4D03F;}
 	padding: 10px;
 	width: 100%;
 	color: white;
-	background: rgba(0, 0, 0, 0.7);
+	background: rgba(0, 0, 0, 0.5);
+}
+
+.car_arrow {
+	position: absolute;
+	z-index: 1;
+	top: 50%;
+	cursor: pointer;
+	text-shadow: #000 0 0 5px;
+}
+
+.car_prev {
+	left: -20px;
+}
+
+.car_next { 
+	right: -20px;
+	text-align: right;
 }
 
 /*FOOTER*/
 footer{
 	background-color: rgba(0,0,0,0.67);
 	width: 100%;
+	margin-top: 50px;
 }
 footer p {
 	font-size: 0.55em;
@@ -145,8 +172,10 @@ footer i{
 	width: 20px; 
 	height: 20px;
 	transform: none;
-	margin-right: 0.625em;
+	margin-right: 0.31em;
+	margin-left: 0.31em;
 	margin-bottom: 0.625em;
+	text-align: center;
 }
 
 /*MODAL CONNEXION*/ 
