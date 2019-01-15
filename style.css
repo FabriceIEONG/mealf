@@ -62,9 +62,9 @@ span{color: #F4D03F;}
 }
 
 .icones{
-	position: fixed;
-	top: 107px; 
+	top: 116px; 
 	left: -2px; 
+	position: absolute;
 }
 
 .icones img {
@@ -95,63 +95,37 @@ span{color: #F4D03F;}
 
 .first-row .span-4{color: #F4D03F;}
 
-/*.bloc{padding-left: 68px;}*/
-
 .second-row {animation-duration: 1s;}
 
-.third-row{animation-duration: 1s;}
+/* CARROUSSEL */
+.car_slide { padding: 15px; }
 
-.second-row img, .third-row img{
-	height: 282px;
-    width: 281px;
-	transform: rotate(90deg);	
-	box-shadow: 7px 4px 20px 0 rgba(255,255,255,0.1);
+.car1 { background: url("img/1.jpg") no-repeat center; }
+.car2 { background: url("img/2.jpg") no-repeat center; }
+.car3 { background: url("img/3.jpg") no-repeat center; }
+.car4 { background: url("img/4.jpg") no-repeat center; }
+.car5 { background: url("img/5.jpg") no-repeat center; }
+.car6 { background: url("img/6.jpg") no-repeat center; }
+.car7 { background: url("img/7.jpg") no-repeat center; }
+.car8 { background: url("img/8.jpg") no-repeat center; }
+.car9 { background: url("img/9.jpg") no-repeat center; }
+.car10 { background: url("img/10.jpg") no-repeat center; }
+.car11 { background: url("img/11.jpg") no-repeat center; }
+.car12 { background: url("img/12.jpg") no-repeat center; }
+
+.car_img {
+	display: flex;
+	height: 300px;
+	background-size: cover;
+	align-items: flex-end;
 }
 
-.second-row p, .third-row p{
-	color: #fff;
+.car_details {
+	padding: 10px;
+	width: 100%;
+	color: white;
+	background: rgba(0, 0, 0, 0.7);
 }
-
-.line{
-	margin-bottom: 19px;
-    margin-top: -18px;
-    height: 1px;
-	width: 49px;	
-	border: 1px solid #417505;
-	background-color: #417505;
-}
-
-.background-info{
-	 position: relative;
-	 top : -44px;
-	 left: -1px;
-	 width: 283px;
-	 height: 44px;
-	 background-color: rgba(0,0,0,0.77);
-	 font-size: 0.75em; 
-	 display: flex;
-}
-
-.background-info p{
-	font-family: 'Roboto', sans-serif;	
-	padding: 5px;
-}
-
-.flex-shrink-1 {
-	margin-top: 0.625em;
-	margin-right: 0.625em;
-}
-
-.btn{
-	color: #F0EAEA;	
-	border: 1px solid #F4D03F;
-	padding: 0px; 
-	background: transparent;
-	font-size: 0.8em;	
-	height: 18px;	
-	width: 57px;
-	border-radius: 0px; 	
-	box-shadow: 0 1px 4px 0 rgba(255,255,255,0.25);}
 
 /*FOOTER*/
 footer{
@@ -166,7 +140,8 @@ footer p {
 	box-sizing: border-box;
 }
 
-footer .rs img, .help img{
+footer i{
+	color: white; 
 	width: 20px; 
 	height: 20px;
 	transform: none;
@@ -299,7 +274,7 @@ textarea {
 @media (min-width: 576px){ 
 .back-icones {height: 157px;}
 
-.icones {top: 97px;}
+.icones {top: 109px;}
 
 .icones img {
     width: 17px;
@@ -319,7 +294,7 @@ header{height: 600px;}
 
 .back-icones {height: 300px;}
 
-.icones {top: 204px;}
+.icones {top: 229px;}
 
 .icones img {
     width: 22px;
@@ -346,3 +321,79 @@ header{height: 600px;}
     font-size: 2.5em;
 }
 }
+
+
+/*PAGE MAPS*/
+.header-maps{
+	background: url('img/back-creation.jpg') fixed center;
+	background-size: cover;
+	height: 200px;
+	display: flex;
+	flex-direction: column;
+	align-items: flex-start;
+}
+
+.line {
+	background-color: #1AA184; 
+	width: 50px; 
+	height: 1px; 
+}
+
+a {
+	color:white;
+	font-family: 'Roboto', sans-serif;
+	font-size: 0.8em;
+}
+
+.btn-maps {
+	background-color: #34A77B;
+	border: none; 
+	position: absolute;
+	top:490px; 
+	width: 50%;
+	padding: 5px 10px;
+
+
+}
+
+.localisation{
+    height:545px;
+    width: 100%;
+    margin-top: 1.5em;
+}
+
+
+.lieu{
+    width: 100%;
+    height: 500px;
+    padding: 2em;
+    color: black;
+    overflow-y: scroll;
+}
+
+.donnee{
+    margin: 1em;
+    padding: 1em;
+    border: 1px solid lightseagreen;
+    border-radius: 3px 3px 5px 5px;
+}
+
+#nom1, #nom2, #nom3, #nom4, #nom5{
+    font-size: 1.4em;
+    color: lightseagreen;
+}
+
+.caracteristiques{   
+    text-align: center;
+    font-size: 1.2em;
+    padding-left: 9%;
+    padding-top: 9%;
+   width: 100%; 
+}
+
+.googlemap{
+    margin: 0em;
+    padding: 1.5em;
+}
+
+.distance { border-left: 2px solid lightgray;}
