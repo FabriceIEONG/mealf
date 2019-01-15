@@ -11,7 +11,7 @@
 }
 /*HEADER*/
 
-header{
+.index-body{
 	background: url('img/banner.jpg') fixed ;
 	background-size: cover; 
 	height: 300px; 
@@ -152,7 +152,7 @@ footer i{
 /*MODAL CONNEXION*/ 
 ::placeholder {color: rgba(255,255,255,0.55);}
 
-.connexion, .creation{ 
+.connexion{ 
 	margin: 0 auto;
 	background: url(img/back-modal.jpg);
 	background-size: cover;
@@ -213,7 +213,7 @@ footer i{
 .btn2 {
 	background: linear-gradient(90deg, #f4d03f, #16a085);
 	border : none;
-	padding : 8px 20px;	
+	padding : 5px 44px;
 }
 
 /*MODAL QUESTION*/
@@ -343,6 +343,8 @@ a {
 	color:white;
 	font-family: 'Roboto', sans-serif;
 	font-size: 0.8em;
+	text-decoration: none; 
+	margin-top: 20px;
 }
 
 .btn-maps {
@@ -416,5 +418,17 @@ a {
 /*PAGE COMPTE*/
 
 .compte-body{
-	background: url('img/')
+	background: url('img/back-creation.jpg');
+	background-size: cover;
 }
+
+.compte-body .modal-body{
+	background-color: #ffffff03;
+	margin-top:125px
+}
+
+.compte-body .modal-body p {color:#fff;}
+
+
+@media (min-width: 992px) { 
+	.compte-body .modal-body{ margin-top: -470px; }
