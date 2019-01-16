@@ -106,7 +106,8 @@ function manger() {
                 });
             } else {
                 // If our results are 0; no businesses were returned by the JSON therefor we display on the page no results were found
-                alert("Aucun résultat :(")
+                // alert("Aucun résultat :(");
+                $('.lieu').apprend('<div class="noresult">Aucun résultat :( <br><a href="index.html">Recommencez la recherche</a></div>');
             }
             //Les restaurants sont mis dans l'ordre de distance
             data.businesses.sort(function (a, b) {
