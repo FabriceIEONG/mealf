@@ -24,15 +24,19 @@
     <div id="mapArea"></div>
     <br>
     <select name="" id="selectMiam">
-        <option value="japonais">Jap</option>
-        <option value="kebab">Kebab</option>
-        <option value="burger">Burger</option>
+        <option value="coffee">Café</option>
+        <option value="restauration rapide">fast foods ?</option>
+        <option value="mexican">Mexicain</option>
+        <option value="crêpe">Crepe !</option>
+        <option value="kebab">kebab</option>
+        <option value="ramen">Ramen</option>
+        <option value="glace">glace</option>
     </select>
     <input type="button" value="J'ai faim !!" onclick="manger()"><br>
     <div id="result"></div>
     <script type="text/javascript">
         var miam, myLocation, map, interest, service, infowindow, lat, long, latlong, marker, contentString; //Déclaration des variables en global scope
-        var distance = 1000; //Cette valeur est en brut pour tester la recherche sur 500m
+        var distance = 4000; //Cette valeur est en brut pour tester la recherche sur 500m
         var markers = []; // C'est un array qui me permettra de clear la map plus tard
         var restaurants = [];
 

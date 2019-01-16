@@ -3,10 +3,10 @@
 */
 //Fonction principale // //////
 var miam, myLocation, map, interest, service, infowindow, lat, long, latlong, marker, contentString; //Déclaration des variables en global scope
-var distance = 500; //Cette valeur est en brut pour tester la recherche sur 500m
+var distance = 2000; //Cette valeur est en brut pour tester la recherche sur 500m
 var markers = []; // C'est un array qui me permettra de clear la map plus tard
 var restaurants = []; //Un array qui sert à trier les resulats de la requête
-//miam = document.querySelector("#choix").value; //Recupere la valeur de l'image choisie
+// miam correspond au choix du user. Il est stocké dans une variable de session.
 miam = sessionStorage.getItem("miam");
 
 window.onload = function () {
@@ -24,6 +24,7 @@ function drawMap() {
         alert('Your navigator hates you');
     }
 }
+//Si la map s'est générée avec succés, on la centre sur notre position et la fonction manger() s'execute.
 function onSuccess(position) {
     lat = position.coords.latitude;
     long = position.coords.longitude;
@@ -71,7 +72,7 @@ function manger() {
     }
     //document.querySelector("#result").innerHTML = ""; //Je vide le result, c'est moins moche pour les tests :)
     //miam = document.querySelector("#selectMiam").value; //Ancien TEST.
-    console.log(miam);
+    console.log(miam); //Ce console log permet de verifier quelle recherche à été rentrée par l'utilisateur
     var myurl = "https://cors-anywhere.herokuapp.com/https://api.yelp.com/v3/businesses/search?term=" + miam + "&latitude=" + lat + "&longitude=" + long + "&radius=" + distance;
 
     $.ajax({
@@ -105,15 +106,17 @@ function manger() {
                 });
             } else {
                 // If our results are 0; no businesses were returned by the JSON therefor we display on the page no results were found
-                alert("Aucun résultats :(")
+                alert("Aucun résultat :(")
             }
             //Les restaurants sont mis dans l'ordre de distance
             data.businesses.sort(function (a, b) {
                 return a.distance - b.distance;
             });
+            $(".lieu").innerHTML="";
+            //On commence par générer l'HTML dynamiquement en fonction du nombre de résultats
             for (i = 0; i < data.businesses.length; i++) {
-                $(".lieu").append('<div class="row donnee"><div class="col-12" blob="' + i + '" id="jiji' + i + '"></div></div>');
-                $("#jiji" + i).append('<div class="row"> <div class="col-12"> <div id="nom' + i + '" class="name">Nom du Restaurant 1</div> </div> </div> <div class="row"><div class="col-6"><div id="adresse' + i + '">12 Av philippe Auguste,</br>75011 Paris</div><div id="tel' + i + '">01.89.09.23.34</div></div><div class="col-6 distance"> <div id="distance' + i + '">Situé à 4kms</div><div id="prix' + i + '"> 12€-17€</div><div id="note' + i + '">20/20</div></div></div></div>')
+                $(".lieu").append('<div class="row donnee"><div class="col-12" nbrattr="' + i + '" id="busiResult' + i + '"></div></div>');
+                $("#busiResult" + i).append('<div class="row"> <div class="col-12"> <div id="nom' + i + '" class="name">Nom du Restaurant 1</div> </div> </div> <div class="row"><div class="col-6"><div id="adresse' + i + '">12 Av philippe Auguste,</br>75011 Paris</div><div id="tel' + i + '">01.89.09.23.34</div></div><div class="col-6 distance"> <div id="distance' + i + '">Situé à 4kms</div><div id="prix' + i + '"> 12€-17€</div><div id="note' + i + '">20/20</div></div></div></div>')
                 var restoName = data.businesses[i].name;
                 var distanceResto = data.businesses[i].distance.toFixed(0);
                 var adressResto = data.businesses[i].location.display_address;
@@ -121,26 +124,37 @@ function manger() {
                 var phoneResto = data.businesses[i].display_phone;
                 var noteResto = data.businesses[i].rating;
                 //console.log(distanceResto);
+                //On met toutes les valeurs dans les differentes div de resultats
                 document.querySelector("#nom" + i).innerHTML = restoName.toUpperCase();
                 document.querySelector("#adresse" + i).innerHTML = adressResto;
                 document.querySelector("#tel" + i).innerHTML = phoneResto;
                 document.querySelector("#distance" + i).innerHTML = distanceResto + " m";
                 document.querySelector("#note" + i).innerHTML = noteResto + "/5";
-                prixResto = data.businesses[i].price;
-                if (prixResto == undefined) {
+                prixResto = data.businesses[i].price; 
+                //On change le message d'erreur si le resto ne renseigne pas son "prix".
+                if (prixResto == undefined) { 
                     document.querySelector("#prix" + i).innerHTML = "Non renseigné";
                 } else {
                     document.querySelector("#prix" + i).innerHTML = data.businesses[i].price;
                 }
                 createMarker(data.businesses[i], restoName, distanceResto, adressResto, photoResto, phoneResto, prixResto, noteResto);
-                $("#jiji" + i).click(function () {
-                    winnie = $(this).attr("blob");
+
+                //On fait changer l'icone des markers avec le Hover sur le nom des restau
+                $("#busiResult"+i).mouseenter(function () { 
+                    winnie = $(this).attr("nbrattr");colorChangeTest(winnie);
+                }).mouseleave( function () {
+                    for (o = 0; o < markers.length; o++) {
+                    markers[o].setIcon();
+                } });
+                //Ancienne fonction click pour changer les markers
+/*                 $("#busiResult" + i).click(function () {
+                    winnie = $(this).attr("nbrattr");
                     for (o = 0; o < markers.length; o++) {
                         markers[o].setIcon();
                     }
                     colorChangeTest(winnie);
                     //alert(winnie);
-                });
+                }); */
 
 
             }
@@ -156,14 +170,14 @@ function manger() {
 //La fonction createMarker, crée des markers. Je sais c'est dingue !
 function createMarker(place, placeName, distance, address, photo, phone, price, note) {
 
-
+    //On definit le contenu de l'infoBulle
     var contenuInfoBulle = '<h1>' + placeName + " (" + distance + "m)" + '</h1>' +
         '<h4>' + price + " " + note + "/5" + '</h4>' +
         '<p>' + address + '</p>' +
         '<p>' + phone + '</p>' +
         '<img src="' + photo + '"/>';
 
-
+    //Les markers sont posés sur la map
     latlong = new google.maps.LatLng(place.coordinates.latitude, place.coordinates.longitude);
     marker = new google.maps.Marker({
         position: latlong,
@@ -171,6 +185,7 @@ function createMarker(place, placeName, distance, address, photo, phone, price, 
         title: placeName + " à " + distance + "m"
     });
 
+    //on pousse les markers dans l'array, et on rajoute un event de click sur les markers pour l'infobulle
     markers.push(marker);
     google.maps.event.addListener(marker, 'click', function () {
         infowindow.setContent(contenuInfoBulle);
@@ -182,10 +197,4 @@ function colorChangeTest(nombrelol) {
     markers[nombrelol].setIcon('http://maps.google.com/mapfiles/ms/icons/green-dot.png');
 }
 
-
-function colorChange(supernombre) {
-    for (var i = 0; i < markers.length; i++) {
-        markers[supernombre].setIcon('http://maps.google.com/mapfiles/ms/icons/green-dot.png');
-    }
-}
-//$("#nom0").click(colorChange(0));
+//$("#nom0").click(colorChange(0)); Test color change
