@@ -4,20 +4,32 @@
 		"url" : "bar.jpg"
 	},
 	{
+		"nom" : "Boulangerie",
+		"url" : "boulangerie.jpg"
+	},
+	{
 		"nom" : "Burger",
 		"url" : "burger.jpg"
+	},
+	{
+		"nom" : "Café",
+		"url" : "cafe.jpg"
 	},
 	{
 		"nom" : "Chinois",
 		"url" : "chinois.jpg"
 	},
 	{
-		"nom": "Coréen",
-		"url": "coreen.jpg"
+		"nom" : "Coréen",
+		"url" : "coreen.jpg"
 	},
 	{
-		"nom": "Fastfood",
-		"url": "fastfood.jpg"
+		"nom": "Crêpe",
+		"url": "crepe.jpg"
+	},
+	{
+		"nom": "Français",
+		"url": "francais.jpg"
 	},
 	{
 		"nom" : "Indien",
@@ -32,19 +44,31 @@
 		"url" : "japonais.jpg"
 	}, 
 	{
-		"nom": "Kebab",
-		"url": "kebab.jpg"
+		"nom" : "Kebab",
+		"url" : "kebab.jpg"
 	},
 	{
-		"nom": "Libannais",
-		"url": "libannais.jpg"
+		"nom": "Restauration rapide",
+		"url": "fastfood.jpg"
 	},
 	{
-		"nom": "Pizza",
-		"url": "pizza.jpg"
+		"nom" : "Mexicain",
+		"url" : "mexicain.jpg"
 	},
 	{
-		"nom": "Sandwich",
-		"url": "sandwich.jpg"
+		"nom" : "Pizza",
+		"url" : "pizza.jpg"
+	},
+	{
+		"nom" : "Ramen",
+		"url" : "ramen.jpg"
+	},
+	{
+		"nom" : "Sandwich",
+		"url" : "sandwich.jpg"
+	},
+	{
+		"nom": "Vegan",
+		"url": "vegan.jpg"
 	}
 ]
