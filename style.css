@@ -431,6 +431,19 @@ footer a {
 
 .distance { border-left: 0.1px solid lightgray;}
 
+/*-- PACMAN-- */
+.outer-div
+{
+	padding: 30px;
+	display: flex;
+}
+
+.inner-div
+{
+	margin: auto;
+	width: 100px;
+	height: 100px;
+}
 /*PAGE COMPTE*/
 
 .compte-body{
