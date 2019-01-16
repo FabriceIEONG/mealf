@@ -112,7 +112,7 @@ function manger() {
             data.businesses.sort(function (a, b) {
                 return a.distance - b.distance;
             });
-            $(".lieu").innerHTML="";
+            $("#loading").hide();
             //On commence par générer l'HTML dynamiquement en fonction du nombre de résultats
             for (i = 0; i < data.businesses.length; i++) {
                 $(".lieu").append('<div class="row donnee"><div class="col-12" nbrattr="' + i + '" id="busiResult' + i + '"></div></div>');
