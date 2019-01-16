@@ -414,7 +414,8 @@ a {
 .donnee{
     margin: 1em;
     padding: 1em;
-    border: 0.1px solid #1da1835e;
+	border: 0.1px solid #1da1835e;
+	cursor: pointer;
 }
 
 .donnee:hover{
