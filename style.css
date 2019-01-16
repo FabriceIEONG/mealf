@@ -131,17 +131,18 @@ span{color: #F4D03F;}
 .car_arrow {
 	position: absolute;
 	z-index: 1;
-	top: 50%;
 	cursor: pointer;
 	text-shadow: #000 0 0 5px;
 }
 
 .car_prev {
 	left: -20px;
+	top: 30%;
 }
 
 .car_next { 
 	right: -20px;
+	top: 65%;
 	text-align: right;
 }
 
@@ -390,6 +391,10 @@ footer a {
     color: black;
     margin-top: 9px;
     overflow-y: scroll;
+}
+
+.noresult {
+	color: #fff;
 }
 
 .donnee{
