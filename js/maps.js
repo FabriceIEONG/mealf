@@ -147,7 +147,12 @@ function manger() {
                 }).mouseleave( function () {
                     for (o = 0; o < markers.length; o++) {
                     markers[o].setIcon();
-                } });
+                }}).click( function(){
+                    winnie = $(this).attr("nbrattr");itineraire(winnie);
+                    })
+                
+            
+             
                 //Ancienne fonction click pour changer les markers
 /*                 $("#busiResult" + i).click(function () {
                     winnie = $(this).attr("nbrattr");
@@ -200,3 +205,31 @@ function colorChangeTest(nombrelol) {
 }
 
 //$("#nom0").click(colorChange(0)); Test color change
+
+directionsDisplay = new google.maps.DirectionsRenderer({
+    polylineOptions: {
+      strokeColor : "red",
+      strokeWeight : 5
+    }
+  });
+
+function itineraire (nombrelol){
+    
+    directionsDisplay.setMap(map);
+    
+    var request = {
+        origin: myLocation,
+        destination: markers[nombrelol].position,
+        travelMode: google.maps.TravelMode.WALKING
+    };
+    
+    var directionsService = new google.maps.DirectionsService();
+    directionsService.route(request, function (response, status) {
+        if (status == google.maps.DirectionsStatus.OK) {
+            directionsDisplay.setDirections(response);
+            var point = response.routes[0].legs[0];
+            $('#travel_data').html('Temps estimé: ' + point.duration.text + ' (' + point.distance.text + ')');
+        }
+    });
+   
+}
