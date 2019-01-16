@@ -112,6 +112,7 @@ function manger() {
             data.businesses.sort(function (a, b) {
                 return a.distance - b.distance;
             });
+            //La ligne ci-dessous fait disparaitre l'animation de chargement lorsque les requetes sont terminées
             $("#loading").hide();
             //On commence par générer l'HTML dynamiquement en fonction du nombre de résultats
             for (i = 0; i < data.businesses.length; i++) {
