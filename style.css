@@ -23,6 +23,12 @@ a, a:hover {
 	align-items: center; 
 }
 
+.logo {
+	width: 50px; 
+	height: auto;
+	border: 1px solid red; 
+}
+
 .back-icones{
 	width: 100%; 
 	height: 125px; 
@@ -76,6 +82,8 @@ span{color: #F4D03F;}
 	height: 15px; 	
 	margin: 0px 0px 20px 20px;
 }
+
+.icones img:hover{transform: translateY(-2px);}
 /*FIN DU HEADER */
 
 .index-content {
@@ -149,7 +157,7 @@ span{color: #F4D03F;}
 footer{
 	background-color: rgba(0,0,0,0.67);
 	width: 100%;
-	margin-top: 30px;
+	margin-top: 20px;
 }
 footer p {
 	font-size: 0.55em;
@@ -285,12 +293,6 @@ textarea {
 
 .btn3 {padding: 4px 20px 10px 20px;}
 
-/*MODAL CREATION*/
-.creation{
-	background: url(img/back-creation.jpg);
-	background-size: cover;
-}
-
 /*MEDIA QUERIES*/
 
 @media (min-width: 576px){ 
@@ -356,7 +358,7 @@ textarea {
 	height: 1px; 
 }
 
-.header-maps a{
+.header a{
 	color:#F4D03F;
 	margin-left: 12px; 
 	font-size: 0.8em;
@@ -371,9 +373,13 @@ footer a {
 	margin-top: 6px;
 }
 
+img{
+	position: relative;
+}
+
 #mapArea{
 	width: 100%;
-	height: 653px;
+	height: 650px;
 	box-shadow: 0px 9px 39px 0px rgba(0,0,0,0.20);
 	opacity: 0.9;
 }
@@ -386,10 +392,11 @@ footer a {
 
 .lieu{
     width: 100%;
-    height: 653px;
+    height: 630px;
     color: black;
     margin-top: 9px;
     overflow-y: scroll;
+    justify-content: center;
 }
 
 .donnee{
@@ -432,15 +439,13 @@ footer a {
 .distance { border-left: 0.1px solid lightgray;}
 
 /*PAGE COMPTE*/
+.creation {height: 500px;}
 
-.compte-body{
-	background: url('img/back-creation.jpg');
-	background-size: cover;
-}
+.compte-body{background: url('img/back-creation.jpg');}
 
 .compte-body .modal-body{
 	background-color: #ffffff03;
-	margin-top:125px
+	margin-top:125px;
 }
 
 .compte-body .modal-body p {color:#fff;}
@@ -448,10 +453,7 @@ footer a {
 header a {
 	color:#F4D03F;
 	margin-left: 12px; 
+	margin-top: 10px;
 	font-size: 0.8em;
 }
 
-
-@media (min-width: 992px) { 
-	.compte-body .modal-body{ margin-top: -470px; }
-}
