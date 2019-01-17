@@ -23,8 +23,8 @@ $.ajax({
         mobileFirst: true,
         slidesToShow: 1,
         slidesToScroll: 1,
-        prevArrow: '<div class="car_arrow car_prev">PREVIOUS<div class="line"></div></div>',
-        nextArrow: '<div class="car_arrow car_next">NEXT<div class="line"></div></div>',
+        prevArrow: '<div class="car_arrow car_prev">Back<div class="line_index prev"></div></div>',
+        nextArrow: '<div class="car_arrow car_next">Next<div class="line_index next"></div></div>',
         responsive: [
             {
                 breakpoint: 720,

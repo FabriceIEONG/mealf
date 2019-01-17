@@ -36,6 +36,20 @@ function onSuccess(position) {
     };
     map = new google.maps.Map(document.querySelector("#mapArea"), mapOption);
     infowindow = new google.maps.InfoWindow();
+    var marker = new google.maps.Marker({
+        position: myLocation,
+        map: map,
+        title: "<div style = 'height:60px;width:200px'><b>Your location:</b><br />Latitude: " + myLocation.lat() + "<br />Longitude: " + myLocation.lng(),
+        icon: {
+                path: google.maps.SymbolPath.CIRCLE,
+                fillColor: "blue",
+                fillOpacity: 0.7,
+                strokeColor: "blue",
+                strokeOpacity: 0.7,
+                strokeWeight: 0,
+                scale: 8
+              },
+      });
     manger();
     //infowindow = new google.maps.InfoWindow(); //Initialise l'affichage des infos sur les resultats trouvés lors du click de la souris sur le marqueur
 }
@@ -106,7 +120,8 @@ function manger() {
                 });
             } else {
                 // If our results are 0; no businesses were returned by the JSON therefor we display on the page no results were found
-                alert("Aucun résultat :(")
+                // alert("Aucun résultat :(");
+                $('.lieu').apprend('<div class="noresult">Aucun résultat :( <br><a href="index.html">Recommencez la recherche</a></div>');
             }
             //Les restaurants sont mis dans l'ordre de distance
             data.businesses.sort(function (a, b) {
@@ -146,7 +161,13 @@ function manger() {
                 }).mouseleave( function () {
                     for (o = 0; o < markers.length; o++) {
                     markers[o].setIcon();
-                } });
+                }}).click( function(){
+                    winnie = $(this).attr("nbrattr");
+                    itineraire(winnie);
+                    })
+                
+            
+             
                 //Ancienne fonction click pour changer les markers
 /*                 $("#busiResult" + i).click(function () {
                     winnie = $(this).attr("nbrattr");
@@ -172,11 +193,11 @@ function manger() {
 function createMarker(place, placeName, distance, address, photo, phone, price, note) {
 
     //On definit le contenu de l'infoBulle
-    var contenuInfoBulle = '<h1>' + placeName + " (" + distance + "m)" + '</h1>' +
+/*     var contenuInfoBulle = '<h1>' + placeName + " (" + distance + "m)" + '</h1>' +
         '<h4>' + price + " " + note + "/5" + '</h4>' +
         '<p>' + address + '</p>' +
         '<p>' + phone + '</p>' +
-        '<img src="' + photo + '"/>';
+        '<img src="' + photo + '"/>'; */
 
     //Les markers sont posés sur la map
     latlong = new google.maps.LatLng(place.coordinates.latitude, place.coordinates.longitude);
@@ -184,13 +205,16 @@ function createMarker(place, placeName, distance, address, photo, phone, price, 
         position: latlong,
         map: map,
         title: placeName + " à " + distance + "m"
+        
     });
 
     //on pousse les markers dans l'array, et on rajoute un event de click sur les markers pour l'infobulle
     markers.push(marker);
+    var thisPosition = marker.position;
     google.maps.event.addListener(marker, 'click', function () {
-        infowindow.setContent(contenuInfoBulle);
-        infowindow.open(map, this);
+/*         infowindow.setContent(contenuInfoBulle);
+        infowindow.open(map, this); */
+        itineraire2(thisPosition);
     });
 };
 //Cette fonction change la couleur des markers
@@ -199,3 +223,51 @@ function colorChangeTest(nombrelol) {
 }
 
 //$("#nom0").click(colorChange(0)); Test color change
+
+directionsDisplay = new google.maps.DirectionsRenderer({
+    polylineOptions: {
+      strokeColor : "red",
+      strokeWeight : 5
+    }
+  });
+
+function itineraire (nombrelol){
+    
+    directionsDisplay.setMap(map);
+    
+    var request = {
+        origin: myLocation,
+        destination: markers[nombrelol].position,
+        travelMode: google.maps.TravelMode.WALKING,
+    };
+    
+    var directionsService = new google.maps.DirectionsService();
+    directionsService.route(request, function (response, status) {
+        if (status == google.maps.DirectionsStatus.OK) {
+            directionsDisplay.setDirections(response);
+            var point = response.routes[0].legs[0];
+            $('#travel_data').html('Temps estimé: ' + point.duration.text + ' (' + point.distance.text + ')');
+        }
+    });
+   
+}
+function itineraire2 (destinationMarker){
+    
+    directionsDisplay.setMap(map);
+    
+    var request = {
+        origin: myLocation,
+        destination: destinationMarker,
+        travelMode: google.maps.TravelMode.WALKING
+    };
+    
+    var directionsService = new google.maps.DirectionsService();
+    directionsService.route(request, function (response, status) {
+        if (status == google.maps.DirectionsStatus.OK) {
+            directionsDisplay.setDirections(response);
+            var point = response.routes[0].legs[0];
+            $('#travel_data').html('Temps estimé: ' + point.duration.text + ' (' + point.distance.text + ')');
+        }
+    });
+   
+}
