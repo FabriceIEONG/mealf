@@ -36,6 +36,20 @@ function onSuccess(position) {
     };
     map = new google.maps.Map(document.querySelector("#mapArea"), mapOption);
     infowindow = new google.maps.InfoWindow();
+    var marker = new google.maps.Marker({
+        position: myLocation,
+        map: map,
+        title: "<div style = 'height:60px;width:200px'><b>Your location:</b><br />Latitude: " + myLocation.lat() + "<br />Longitude: " + myLocation.lng(),
+        icon: {
+                path: google.maps.SymbolPath.CIRCLE,
+                fillColor: "blue",
+                fillOpacity: 0.7,
+                strokeColor: "blue",
+                strokeOpacity: 0.7,
+                strokeWeight: 0,
+                scale: 8
+              },
+      });
     manger();
     //infowindow = new google.maps.InfoWindow(); //Initialise l'affichage des infos sur les resultats trouvés lors du click de la souris sur le marqueur
 }
@@ -190,6 +204,7 @@ function createMarker(place, placeName, distance, address, photo, phone, price, 
         position: latlong,
         map: map,
         title: placeName + " à " + distance + "m"
+        
     });
 
     //on pousse les markers dans l'array, et on rajoute un event de click sur les markers pour l'infobulle
@@ -220,7 +235,7 @@ function itineraire (nombrelol){
     var request = {
         origin: myLocation,
         destination: markers[nombrelol].position,
-        travelMode: google.maps.TravelMode.WALKING
+        travelMode: google.maps.TravelMode.WALKING,
     };
     
     var directionsService = new google.maps.DirectionsService();
