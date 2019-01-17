@@ -23,7 +23,7 @@
 
 	<link rel="stylesheet" type="text/css" href="style.css">
 
-	<title>Accueil</title>
+	<title>MEALF</title>
 </head>
 
 <body class="index-background">
@@ -38,7 +38,7 @@
 		</div>
 		<div class="icones d-inline-flex flex-column">
 			<img src="img/profil.svg" alt="icone d'un bonhomme" data-toggle="modal" data-target="#modalConnexion">
-			<img src="img/loupe.svg" alt="icone d'une loupe" class="mt-3">
+			<img src="img/loupe.svg" alt="icone d'une loupe" class="mt-3" data-toggle="modal" data-target=".search-modal-sm">
 		</div>
 	</header>
 
@@ -71,6 +71,8 @@
 		</div>
 	</footer>
 
+
+	<!-- MODAL CONNEXION -->
 	<div class="modal animated zoomIn" id="modalConnexion" tabindex="-1" role="dialog" aria-labelledby="modalConnexionLabel"
 	 aria-hidden="true">
 		<div class="modal-dialog" role="document">
@@ -134,6 +136,17 @@
 			</div>
 		</div>
 	</div>
+
+	<!--/*MODAL RECHERCHE*/  -->
+	<div class="modal animated fadeInLeft search-modal-sm" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-sm search">
+    <div class="modal-content d-flex flex-row">
+      <input class="form-control mr-sm-2" type="search" placeholder="Que veux-tu manger?" aria-label="Search">
+      <button class="btn" type="submit"><a href="maps.html"><i class="fas fa-search"></i></a></button>
+     
+    </div>
+  </div>
+</div>
 
 	<!-- JavaScript -->
 	<!-- jQuery first, then Popper.js, then Bootstrap JS -->
