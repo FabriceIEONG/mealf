@@ -469,9 +469,20 @@ img{
     color: #fff;
 }
 
-.donnee:hover{
+.donnee_hover {
 	background-color: #1AA184; 
 	box-shadow: 0px 5px 28px 0px rgba(255,255,255,0.1);
+}
+.donnee_hover .name {
+	color: #F4D03F;
+}
+
+.donnee_click {
+	background-color: #1AA184; 
+	box-shadow: 0px 5px 28px 0px rgba(255,255,255,0.1);
+}
+.donnee_click .name {
+	color: #F4D03F;
 }
 
 .name{
