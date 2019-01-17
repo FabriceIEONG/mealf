@@ -178,13 +178,24 @@ function manger() {
                                     colorChangeTest(winnie);
                                     //alert(winnie);
                                 }); */
-
+                                
+                
 
             }
+            //console.log(data);
+            
+            /* Fonction hover et click des données récupérées */
+            $(".donnee").hover(function() {
+                $(this).addClass('donnee_hover');
+            }, function() {
+                $(this).removeClass('donnee_hover');
+            });
 
-            console.log(data);
-
-
+            $(".donnee").click(function() {
+                $(".donnee").removeClass('donnee_click');
+                $(this).addClass('donnee_click');
+            });
+            
         }
 
     });
@@ -281,3 +292,19 @@ function itineraire2(destinationMarker) {
     });
 
 }
+
+/* FONCTIONS HOVER ET CLICK DE DONNEE */
+// function colorDonnee(div) {
+//     var nb = $(div).children().attr('nbrattr');
+//     $(div).addClass('donnee_hover');
+//     $('#nom'+nb).css('color', '#F4D03F');
+// }
+// function decolorDonnee(div) {
+//     var nb = $(div).children().attr('nbrattr');
+//     $(div).removeClass('donnee_hover');
+//     $('#nom'+nb).css('color', '#7BB664');
+// }
+// function decolorAll() {
+//     $(".donnee").removeClass('donnee_hover');
+//     $(".name").css('color', '#7BB664');
+// }
