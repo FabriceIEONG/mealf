@@ -205,6 +205,7 @@ function createMarker(place, placeName, distance, address, photo, phone, price, 
     var image = {
         // Adresse de l'icône personnalisée
         url: '../img/marker.jpg',
+       
         
     };
     marker = new google.maps.Marker({
@@ -213,7 +214,7 @@ function createMarker(place, placeName, distance, address, photo, phone, price, 
         title: placeName + " à " + distance + "m",
         icon : image
     });
-
+    
     //on pousse les markers dans l'array, et on rajoute un event de click sur les markers pour l'infobulle
     markers.push(marker);
     var thisPosition = marker.position;
@@ -225,15 +226,18 @@ function createMarker(place, placeName, distance, address, photo, phone, price, 
 };
 //Cette fonction change la couleur des markers
 function colorChangeTest(nombrelol) {
-    markers[nombrelol].setIcon('http://maps.google.com/mapfiles/ms/icons/red-dot.png');
+    markers[nombrelol].setIcon('../img/marker-logo.png');
 }
 
 //$("#nom0").click(colorChange(0)); Test color change
 
 directionsDisplay = new google.maps.DirectionsRenderer({
     polylineOptions: {
-        strokeColor: "red",
+        strokeColor: "#1AA184",
         strokeWeight: 5
+    },
+    markerOptions : {
+        visible : false
     }
 });
 
