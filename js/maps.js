@@ -160,7 +160,7 @@ function manger() {
                     winnie = $(this).attr("nbrattr"); colorChangeTest(winnie);
                 }).mouseleave(function () {
                     for (o = 0; o < markers.length; o++) {
-                        markers[o].setIcon();
+                        markers[o].setIcon('../img/marker.jpg');
                     }
                 }).click(function () {
                     winnie = $(this).attr("nbrattr");
@@ -209,25 +209,20 @@ function createMarker(place, placeName, distance, address, photo, phone, price, 
             '<h4>' + price + " " + note + "/5" + '</h4>' +
             '<p>' + address + '</p>' +
             '<p>' + phone + '</p>' +
-            '<img src="' + photo + '"/>';  */
+            '<img src="' + photo + '"/>'; */
 
     //Les markers sont posés sur la map
     latlong = new google.maps.LatLng(place.coordinates.latitude, place.coordinates.longitude);
     var image = {
         // Adresse de l'icône personnalisée
-        url: '../img/type/marker.png',
-        // Taille de l'icône personnalisée
-        size: new google.maps.Size(25, 40),
-        // Origine de l'image, souvent (0, 0)
-        origin: new google.maps.Point(0,0),
-        // L'ancre de l'image. Correspond au point de l'image que l'on raccroche à la carte. Par exemple, si votre îcone est un drapeau, cela correspond à son mâts
-        anchor: new google.maps.Point(0, 20)
+        url: '../img/marker.jpg',
+
     };
     marker = new google.maps.Marker({
         position: latlong,
         map: map,
         title: placeName + " à " + distance + "m",
-        icon : image
+        icon: image
     });
 
     //on pousse les markers dans l'array, et on rajoute un event de click sur les markers pour l'infobulle
@@ -241,7 +236,7 @@ function createMarker(place, placeName, distance, address, photo, phone, price, 
 };
 //Cette fonction change la couleur des markers
 function colorChangeTest(nombrelol) {
-    markers[nombrelol].setIcon('http://maps.google.com/mapfiles/ms/icons/green-dot.png');
+    markers[nombrelol].setIcon('http://maps.google.com/mapfiles/ms/icons/red-dot.png');
 }
 
 //$("#nom0").click(colorChange(0)); Test color change
