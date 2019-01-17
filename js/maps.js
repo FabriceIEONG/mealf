@@ -178,11 +178,11 @@ function manger() {
 function createMarker(place, placeName, distance, address, photo, phone, price, note) {
 
     //On definit le contenu de l'infoBulle
-    var contenuInfoBulle = '<h1>' + placeName + " (" + distance + "m)" + '</h1>' +
+/*     var contenuInfoBulle = '<h1>' + placeName + " (" + distance + "m)" + '</h1>' +
         '<h4>' + price + " " + note + "/5" + '</h4>' +
         '<p>' + address + '</p>' +
         '<p>' + phone + '</p>' +
-        '<img src="' + photo + '"/>';
+        '<img src="' + photo + '"/>'; */
 
     //Les markers sont posés sur la map
     latlong = new google.maps.LatLng(place.coordinates.latitude, place.coordinates.longitude);
