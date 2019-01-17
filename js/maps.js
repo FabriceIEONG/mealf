@@ -5,7 +5,7 @@
 var miam, myLocation, map, interest, service, infowindow, lat, long, latlong, marker, contentString; //Déclaration des variables en global scope
 var distance = 2000; //Cette valeur est en brut pour tester la recherche sur 500m
 var markers = []; // C'est un array qui me permettra de clear la map plus tard
-var restaurants = []; //Un array qui sert à trier les resulats de la requête
+
 // miam correspond au choix du user. Il est stocké dans une variable de session.
 miam = sessionStorage.getItem("miam");
 
