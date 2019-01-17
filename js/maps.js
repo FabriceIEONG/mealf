@@ -242,6 +242,7 @@ function colorChangeTest(nombrelol) {
 
 //$("#nom0").click(colorChange(0)); Test color change
 
+//Prépare les options de l'itinéraire
 directionsDisplay = new google.maps.DirectionsRenderer({
     polylineOptions: {
         strokeColor: "#1AA184",
