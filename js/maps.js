@@ -132,6 +132,7 @@ function manger() {
             //On commence par générer l'HTML dynamiquement en fonction du nombre de résultats
             for (i = 0; i < data.businesses.length; i++) {
                 $(".lieu").append('<div class="row donnee"><div class="col-12" nbrattr="' + i + '" id="busiResult' + i + '"></div></div>');
+                $(".lieu").append('<div class="donnee_details">Temps estimé</div>');
                 $("#busiResult" + i).append('<div class="row"> <div class="col-12"> <div id="nom' + i + '" class="name">Nom du Restaurant 1</div> </div> </div> <div class="row"><div class="col-6"><div id="adresse' + i + '">12 Av philippe Auguste,</br>75011 Paris</div><div id="tel' + i + '">01.89.09.23.34</div></div><div class="col-6 distance"> <div id="distance' + i + '">Situé à 4kms</div><div id="prix' + i + '"> 12€-17€</div><div id="note' + i + '">20/20</div></div></div></div>')
                 var restoName = data.businesses[i].name;
                 var distanceResto = data.businesses[i].distance.toFixed(0);
@@ -292,19 +293,3 @@ function itineraire2(destinationMarker) {
     });
 
 }
-
-/* FONCTIONS HOVER ET CLICK DE DONNEE */
-// function colorDonnee(div) {
-//     var nb = $(div).children().attr('nbrattr');
-//     $(div).addClass('donnee_hover');
-//     $('#nom'+nb).css('color', '#F4D03F');
-// }
-// function decolorDonnee(div) {
-//     var nb = $(div).children().attr('nbrattr');
-//     $(div).removeClass('donnee_hover');
-//     $('#nom'+nb).css('color', '#7BB664');
-// }
-// function decolorAll() {
-//     $(".donnee").removeClass('donnee_hover');
-//     $(".name").css('color', '#7BB664');
-// }

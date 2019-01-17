@@ -434,7 +434,7 @@ img{
 }
 
 .donnee{
-    margin: 1em;
+    margin: 1em 1em 0 1em;
     padding: 1em;
     border: 0.1px solid #1da1835e;
     cursor: pointer;
@@ -455,6 +455,15 @@ img{
 }
 .donnee_click .name {
 	color: #F4D03F;
+}
+
+.donnee_details {
+	transition: all 0.5s;
+	margin: 0 1em;
+	padding: 0.3em;
+	padding-left: 2em;
+	color: #fff;
+	background: #1da1835e;
 }
 
 .name{
