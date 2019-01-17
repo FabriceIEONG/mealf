@@ -459,8 +459,10 @@ img{
 
 .donnee_details {
 	transition: all 0.5s;
+	height: 0px;
+	overflow: hidden;
 	margin: 0 1em;
-	padding: 0.3em;
+	padding: 0;
 	padding-left: 2em;
 	color: #fff;
 	background: #1da1835e;

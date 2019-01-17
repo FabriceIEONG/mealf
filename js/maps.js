@@ -132,7 +132,7 @@ function manger() {
             //On commence par générer l'HTML dynamiquement en fonction du nombre de résultats
             for (i = 0; i < data.businesses.length; i++) {
                 $(".lieu").append('<div class="row donnee"><div class="col-12" nbrattr="' + i + '" id="busiResult' + i + '"></div></div>');
-                $(".lieu").append('<div class="donnee_details">Temps estimé</div>');
+                $(".lieu").append('<div class="donnee_details" nbrattr="'+i+'"></div>');
                 $("#busiResult" + i).append('<div class="row"> <div class="col-12"> <div id="nom' + i + '" class="name">Nom du Restaurant 1</div> </div> </div> <div class="row"><div class="col-6"><div id="adresse' + i + '">12 Av philippe Auguste,</br>75011 Paris</div><div id="tel' + i + '">01.89.09.23.34</div></div><div class="col-6 distance"> <div id="distance' + i + '">Situé à 4kms</div><div id="prix' + i + '"> 12€-17€</div><div id="note' + i + '">20/20</div></div></div></div>')
                 var restoName = data.businesses[i].name;
                 var distanceResto = data.businesses[i].distance.toFixed(0);
@@ -154,7 +154,7 @@ function manger() {
                 } else {
                     document.querySelector("#prix" + i).innerHTML = data.businesses[i].price;
                 }
-                createMarker(data.businesses[i], restoName, distanceResto, adressResto, photoResto, phoneResto, prixResto, noteResto);
+                createMarker(data.businesses[i], restoName, distanceResto, adressResto, photoResto, phoneResto, prixResto, noteResto, i);
 
                 //On fait changer l'icone des markers avec le Hover sur le nom des restau
                 $("#busiResult" + i).mouseenter(function () {
@@ -203,7 +203,7 @@ function manger() {
 };
 
 //La fonction createMarker, crée des markers. Je sais c'est dingue !
-function createMarker(place, placeName, distance, address, photo, phone, price, note) {
+function createMarker(place, placeName, distance, address, photo, phone, price, note, nbDiv) {
 
     //On definit le contenu de l'infoBulle
     var contenuInfoBulle = '<h4>' + placeName + " (" + distance + "m)" + '</h4>'/*  +
@@ -224,7 +224,8 @@ function createMarker(place, placeName, distance, address, photo, phone, price, 
         position: latlong,
         map: map,
         title: placeName + " à " + distance + "m",
-        icon: image
+        icon: image,
+        tag: $("#busiResult" + nbDiv)
     });
     
     //on pousse les markers dans l'array, et on rajoute un event de click sur les markers pour l'infobulle
@@ -232,8 +233,9 @@ function createMarker(place, placeName, distance, address, photo, phone, price, 
     var thisPosition = marker.position;
     google.maps.event.addListener(marker, 'click', function () {
         infowindow.setContent(contenuInfoBulle);
+        focusBusiness(this.tag);
         infowindow.open(map, this);
-        itineraire2(thisPosition);
+        itineraire2(thisPosition, this.tag);
     });
 };
 //Cette fonction change la couleur des markers
@@ -269,12 +271,15 @@ function itineraire(nombrelol) {
         if (status == google.maps.DirectionsStatus.OK) {
             directionsDisplay.setDirections(response);
             var point = response.routes[0].legs[0];
-            $('#travel_data').html('Temps estimé: ' + point.duration.text + ' (' + point.distance.text + ')');
+            $('.donnee_details[nbrattr="'+nombrelol+'"]').html('Temps estimé: ' + point.duration.text + ' (' + point.distance.text + ')');
+            $('.donnee_details[nbrattr="'+nombrelol+'"]').css('height', '33px');
+            $('.donnee_details[nbrattr="'+nombrelol+'"]').css('padding', '0.3em 0.3em 0.3em 2em');
+            //console.log($('.donnee_details[nbrattr="'+nombrelol+'"]'));
         }
     });
 
 }
-function itineraire2(destinationMarker) {
+function itineraire2(destinationMarker, deev) {
 
     directionsDisplay.setMap(map);
 
@@ -289,8 +294,19 @@ function itineraire2(destinationMarker) {
         if (status == google.maps.DirectionsStatus.OK) {
             directionsDisplay.setDirections(response);
             var point = response.routes[0].legs[0];
-            $('#travel_data').html('Temps estimé: ' + point.duration.text + ' (' + point.distance.text + ')');
+            var attri = deev.attr('nbrattr');
+            $('.donnee_details[nbrattr="'+attri+'"]').html('Temps estimé: ' + point.duration.text + ' (' + point.distance.text + ')');
+            $('.donnee_details[nbrattr="'+attri+'"]').css('height', '33px');
+            $('.donnee_details[nbrattr="'+attri+'"]').css('padding', '0.3em 0.3em 0.3em 2em');
+            //console.log($('.donnee_details[nbrattr="'+attri+'"]'));
         }
     });
 
+}
+
+/* FONCTION HOVER ET CLIQUE de Business */
+function focusBusiness(deev) {
+    //console.log(deev);
+    $(".donnee").removeClass('donnee_click');
+    $(deev.parent()).addClass('donnee_click');
 }
