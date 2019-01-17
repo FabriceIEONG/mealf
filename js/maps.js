@@ -204,7 +204,7 @@ function createMarker(place, placeName, distance, address, photo, phone, price, 
     latlong = new google.maps.LatLng(place.coordinates.latitude, place.coordinates.longitude);
     var image = {
         // Adresse de l'icône personnalisée
-        url: '../img/type/marker.png',
+        url: 'img/marker.png',
         // Taille de l'icône personnalisée
         size: new google.maps.Size(25, 40),
         // Origine de l'image, souvent (0, 0)
@@ -226,6 +226,7 @@ function createMarker(place, placeName, distance, address, photo, phone, price, 
         infowindow.setContent(contenuInfoBulle);
         infowindow.open(map, this);
         itineraire2(thisPosition);
+        
     });
 };
 //Cette fonction change la couleur des markers
