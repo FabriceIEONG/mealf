@@ -41,15 +41,15 @@ function onSuccess(position) {
         map: map,
         title: "<div style = 'height:60px;width:200px'><b>Your location:</b><br />Latitude: " + myLocation.lat() + "<br />Longitude: " + myLocation.lng(),
         icon: {
-                path: google.maps.SymbolPath.CIRCLE,
-                fillColor: "blue",
-                fillOpacity: 0.7,
-                strokeColor: "blue",
-                strokeOpacity: 0.7,
-                strokeWeight: 0,
-                scale: 8
-              },
-      });
+            path: google.maps.SymbolPath.CIRCLE,
+            fillColor: "blue",
+            fillOpacity: 0.7,
+            strokeColor: "blue",
+            strokeOpacity: 0.7,
+            strokeWeight: 0,
+            scale: 8
+        },
+    });
     manger();
     //infowindow = new google.maps.InfoWindow(); //Initialise l'affichage des infos sur les resultats trouvés lors du click de la souris sur le marqueur
 }
@@ -146,9 +146,9 @@ function manger() {
                 document.querySelector("#tel" + i).innerHTML = phoneResto;
                 document.querySelector("#distance" + i).innerHTML = distanceResto + " m";
                 document.querySelector("#note" + i).innerHTML = noteResto + "/5";
-                prixResto = data.businesses[i].price; 
+                prixResto = data.businesses[i].price;
                 //On change le message d'erreur si le resto ne renseigne pas son "prix".
-                if (prixResto == undefined) { 
+                if (prixResto == undefined) {
                     document.querySelector("#prix" + i).innerHTML = "Non renseigné";
                 } else {
                     document.querySelector("#prix" + i).innerHTML = data.businesses[i].price;
@@ -156,27 +156,28 @@ function manger() {
                 createMarker(data.businesses[i], restoName, distanceResto, adressResto, photoResto, phoneResto, prixResto, noteResto);
 
                 //On fait changer l'icone des markers avec le Hover sur le nom des restau
-                $("#busiResult"+i).mouseenter(function () { 
-                    winnie = $(this).attr("nbrattr");colorChangeTest(winnie);
-                }).mouseleave( function () {
-                    for (o = 0; o < markers.length; o++) {
-                    markers[o].setIcon();
-                }}).click( function(){
-                    winnie = $(this).attr("nbrattr");
-                    itineraire(winnie);
-                    })
-                
-            
-             
-                //Ancienne fonction click pour changer les markers
-/*                 $("#busiResult" + i).click(function () {
-                    winnie = $(this).attr("nbrattr");
+                $("#busiResult" + i).mouseenter(function () {
+                    winnie = $(this).attr("nbrattr"); colorChangeTest(winnie);
+                }).mouseleave(function () {
                     for (o = 0; o < markers.length; o++) {
                         markers[o].setIcon();
                     }
-                    colorChangeTest(winnie);
-                    //alert(winnie);
-                }); */
+                }).click(function () {
+                    winnie = $(this).attr("nbrattr");
+                    itineraire(winnie);
+                })
+
+
+
+                //Ancienne fonction click pour changer les markers
+                /*                 $("#busiResult" + i).click(function () {
+                                    winnie = $(this).attr("nbrattr");
+                                    for (o = 0; o < markers.length; o++) {
+                                        markers[o].setIcon();
+                                    }
+                                    colorChangeTest(winnie);
+                                    //alert(winnie);
+                                }); */
 
 
             }
@@ -193,27 +194,37 @@ function manger() {
 function createMarker(place, placeName, distance, address, photo, phone, price, note) {
 
     //On definit le contenu de l'infoBulle
-/*     var contenuInfoBulle = '<h1>' + placeName + " (" + distance + "m)" + '</h1>' +
-        '<h4>' + price + " " + note + "/5" + '</h4>' +
-        '<p>' + address + '</p>' +
-        '<p>' + phone + '</p>' +
-        '<img src="' + photo + '"/>'; */
+    var contenuInfoBulle = '<h4>' + placeName + " (" + distance + "m)" + '</h4>'/*  +
+            '<h4>' + price + " " + note + "/5" + '</h4>' +
+            '<p>' + address + '</p>' +
+            '<p>' + phone + '</p>' +
+            '<img src="' + photo + '"/>';  */
 
     //Les markers sont posés sur la map
     latlong = new google.maps.LatLng(place.coordinates.latitude, place.coordinates.longitude);
+    var image = {
+        // Adresse de l'icône personnalisée
+        url: '../img/type/marker.png',
+        // Taille de l'icône personnalisée
+        size: new google.maps.Size(25, 40),
+        // Origine de l'image, souvent (0, 0)
+        origin: new google.maps.Point(0,0),
+        // L'ancre de l'image. Correspond au point de l'image que l'on raccroche à la carte. Par exemple, si votre îcone est un drapeau, cela correspond à son mâts
+        anchor: new google.maps.Point(0, 20)
+    };
     marker = new google.maps.Marker({
         position: latlong,
         map: map,
-        title: placeName + " à " + distance + "m"
-        
+        title: placeName + " à " + distance + "m",
+        icon : image
     });
 
     //on pousse les markers dans l'array, et on rajoute un event de click sur les markers pour l'infobulle
     markers.push(marker);
     var thisPosition = marker.position;
     google.maps.event.addListener(marker, 'click', function () {
-/*         infowindow.setContent(contenuInfoBulle);
-        infowindow.open(map, this); */
+        infowindow.setContent(contenuInfoBulle);
+        infowindow.open(map, this);
         itineraire2(thisPosition);
     });
 };
@@ -226,21 +237,21 @@ function colorChangeTest(nombrelol) {
 
 directionsDisplay = new google.maps.DirectionsRenderer({
     polylineOptions: {
-      strokeColor : "red",
-      strokeWeight : 5
+        strokeColor: "red",
+        strokeWeight: 5
     }
-  });
+});
 
-function itineraire (nombrelol){
-    
+function itineraire(nombrelol) {
+
     directionsDisplay.setMap(map);
-    
+
     var request = {
         origin: myLocation,
         destination: markers[nombrelol].position,
         travelMode: google.maps.TravelMode.WALKING,
     };
-    
+
     var directionsService = new google.maps.DirectionsService();
     directionsService.route(request, function (response, status) {
         if (status == google.maps.DirectionsStatus.OK) {
@@ -249,18 +260,18 @@ function itineraire (nombrelol){
             $('#travel_data').html('Temps estimé: ' + point.duration.text + ' (' + point.distance.text + ')');
         }
     });
-   
+
 }
-function itineraire2 (destinationMarker){
-    
+function itineraire2(destinationMarker) {
+
     directionsDisplay.setMap(map);
-    
+
     var request = {
         origin: myLocation,
         destination: destinationMarker,
         travelMode: google.maps.TravelMode.WALKING
     };
-    
+
     var directionsService = new google.maps.DirectionsService();
     directionsService.route(request, function (response, status) {
         if (status == google.maps.DirectionsStatus.OK) {
@@ -269,5 +280,5 @@ function itineraire2 (destinationMarker){
             $('#travel_data').html('Temps estimé: ' + point.duration.text + ' (' + point.distance.text + ')');
         }
     });
-   
+
 }
