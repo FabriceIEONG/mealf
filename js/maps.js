@@ -41,15 +41,15 @@ function onSuccess(position) {
         map: map,
         title: "<div style = 'height:60px;width:200px'><b>Your location:</b><br />Latitude: " + myLocation.lat() + "<br />Longitude: " + myLocation.lng(),
         icon: {
-                path: google.maps.SymbolPath.CIRCLE,
-                fillColor: "blue",
-                fillOpacity: 0.7,
-                strokeColor: "blue",
-                strokeOpacity: 0.7,
-                strokeWeight: 0,
-                scale: 8
-              },
-      });
+            path: google.maps.SymbolPath.CIRCLE,
+            fillColor: "blue",
+            fillOpacity: 0.7,
+            strokeColor: "blue",
+            strokeOpacity: 0.7,
+            strokeWeight: 0,
+            scale: 8
+        },
+    });
     manger();
     //infowindow = new google.maps.InfoWindow(); //Initialise l'affichage des infos sur les resultats trouvés lors du click de la souris sur le marqueur
 }
@@ -194,7 +194,7 @@ function manger() {
 function createMarker(place, placeName, distance, address, photo, phone, price, note) {
 
     //On definit le contenu de l'infoBulle
-    /*     var contenuInfoBulle = '<h1>' + placeName + " (" + distance + "m)" + '</h1>' +
+    var contenuInfoBulle = '<h4>' + placeName + " (" + distance + "m)" + '</h4>'/*  +
             '<h4>' + price + " " + note + "/5" + '</h4>' +
             '<p>' + address + '</p>' +
             '<p>' + phone + '</p>' +
@@ -212,15 +212,15 @@ function createMarker(place, placeName, distance, address, photo, phone, price, 
         position: latlong,
         map: map,
         title: placeName + " à " + distance + "m",
-        icon : image
+        icon: image
     });
     
     //on pousse les markers dans l'array, et on rajoute un event de click sur les markers pour l'infobulle
     markers.push(marker);
     var thisPosition = marker.position;
     google.maps.event.addListener(marker, 'click', function () {
-        /*         infowindow.setContent(contenuInfoBulle);
-                infowindow.open(map, this); */
+        infowindow.setContent(contenuInfoBulle);
+        infowindow.open(map, this);
         itineraire2(thisPosition);
     });
 };
