@@ -202,11 +202,21 @@ function createMarker(place, placeName, distance, address, photo, phone, price, 
 
     //Les markers sont posés sur la map
     latlong = new google.maps.LatLng(place.coordinates.latitude, place.coordinates.longitude);
+    var image = {
+        // Adresse de l'icône personnalisée
+        url: '../img/type/marker.png',
+        // Taille de l'icône personnalisée
+        size: new google.maps.Size(25, 40),
+        // Origine de l'image, souvent (0, 0)
+        origin: new google.maps.Point(0,0),
+        // L'ancre de l'image. Correspond au point de l'image que l'on raccroche à la carte. Par exemple, si votre îcone est un drapeau, cela correspond à son mâts
+        anchor: new google.maps.Point(0, 20)
+    };
     marker = new google.maps.Marker({
         position: latlong,
         map: map,
-        title: placeName + " à " + distance + "m"
-
+        title: placeName + " à " + distance + "m",
+        icon : image
     });
 
     //on pousse les markers dans l'array, et on rajoute un event de click sur les markers pour l'infobulle
