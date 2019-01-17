@@ -205,7 +205,7 @@ function createMarker(place, placeName, distance, address, photo, phone, price, 
     var image = {
         // Adresse de l'icône personnalisée
         url: '../img/marker.jpg',
-       
+        
     };
     marker = new google.maps.Marker({
         position: latlong,
