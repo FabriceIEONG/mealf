@@ -426,12 +426,7 @@ img{
     height: 630px;
     color: black;
     margin-top: 9px;
-<<<<<<< HEAD
-    overflow-y: scroll;
-    justify-content: center;
-=======
 	overflow-y: auto;
->>>>>>> 9228789e3dc7d3318b9b214ae35cfdbb4018be2b
 }
 
 .noresult {
@@ -487,17 +482,9 @@ img{
 }
 
 /*PAGE COMPTE*/
-<<<<<<< HEAD
-.creation {height: 500px;}
-
-.compte-body{background: 
-	url('img/back-creation.jpg');
-	background-size: cover
-=======
 .compte-body{
 	background: url('img/back-creation.jpg');
 	background-size: cover;
->>>>>>> 9228789e3dc7d3318b9b214ae35cfdbb4018be2b
 }
 
 .compte-body .modal-body{
