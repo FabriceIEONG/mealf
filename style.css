@@ -339,8 +339,9 @@ textarea {
  .search-modal-sm i {color: #F4D03F;}
 
  .search {
- 	top: 125px;
-    left: -120px;
+	 top: 147px;
+	 margin: 0px; 
+	 margin-left: 12px; 	
  }
 
 /*MEDIA QUERIES*/
@@ -363,14 +364,9 @@ textarea {
 .bloc-text-2 p {font-size: 1.4em;}
 }
 
-@media (min-width: 768px){.search {left: -217px;}} 
-
 @media (min-width: 992px) { 
 
-.search {
-	left: -328px;
-    top: 281px;
-}
+	.search {top: 303px;}
 
 .index-header{height: 600px;}
 
@@ -403,7 +399,7 @@ textarea {
     font-size: 2.5em;
 	}
 }
-@media (min-width: 1200px){.search{left: -432px;}}
+/* @media (min-width: 1200px){.search{left: -432px;}} */
 
 /*PAGE MAPS*/
 .body-maps{
