@@ -324,6 +324,25 @@ textarea {
 
 .btn3 {padding: 4px 20px 10px 20px;}
 
+/*MODAL RECHERCHE*/
+.search-modal-sm ::placeholder{color: rgba(0,0,0,0.45);}
+
+.search-modal-sm input{border: none;}
+
+.search-modal-sm .btn {
+	background-color: #000;
+	cursor: pointer;
+}
+
+ .search-modal-sm input, .search-modal-sm .btn {border-radius: 0px;}
+
+ .search-modal-sm i {color: #F4D03F;}
+
+ .search {
+ 	top: 125px;
+    left: -120px;
+ }
+
 /*MEDIA QUERIES*/
 
 @media (min-width: 576px){ 
@@ -344,7 +363,15 @@ textarea {
 .bloc-text-2 p {font-size: 1.4em;}
 }
 
+@media (min-width: 768px){.search {left: -217px;}} 
+
 @media (min-width: 992px) { 
+
+.search {
+	left: -328px;
+    top: 281px;
+}
+
 .index-header{height: 600px;}
 
 .back-icones {height: 300px;}
@@ -354,13 +381,13 @@ textarea {
 .icones img {
     width: 22px;
     height: 43px;
-}
+	}
 
 .text-1 {
     width: 221px;
     font-size: 2.8em;
     margin-top: 1.18em;
-}
+	}
 
 .bloc-text-2 p {font-size: 2.4em;}
 
@@ -369,13 +396,14 @@ textarea {
 .first-row .span-1 {
     margin-right: -1em;
     font-size: 1em;
-}
+	}
 
 .first-row .span-2, .span-4 {
     text-transform: uppercase;
     font-size: 2.5em;
+	}
 }
-}
+@media (min-width: 1200px){.search{left: -432px;}}
 
 /*PAGE MAPS*/
 .body-maps{
