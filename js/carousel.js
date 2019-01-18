@@ -71,3 +71,25 @@ function shuffle(array) {
 
     return array;
 }
+
+function pressEnter(event) {
+    var code=event.which || event.keyCode; //Selon le navigateur c'est which ou keyCode
+    if (code==13) { //le code de la touche Enter
+        if ($("#choixUser").val()!=""){
+            var choix = document.getElementById("choixUser").value;
+            sessionStorage.setItem('miam', choix);
+            //console.log(choix);
+            document.location.href="maps.html"; 
+        }
+    }
+}
+
+function searchOnClick(){
+    if ($("#choixUser").val()!=""){
+        var choix = document.querySelector("#choixUser").value;
+        sessionStorage.setItem('miam', choix);
+        //console.log(choix); 
+        document.location.href="maps.html";  
+    }
+
+}
