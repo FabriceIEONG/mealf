@@ -119,9 +119,8 @@ function manger() {
                     var zipcode = item.location.zip_code;
                 });
             } else {
-                // If our results are 0; no businesses were returned by the JSON therefor we display on the page no results were found
-                // alert("Aucun résultat :(");
-                $('.lieu').append('<div class="noresult">Aucun résultat :( <br><a href="index.html">Recommencez la recherche</a></div>');
+                // Si pas de résultat
+                $('.lieu').append('<div class="noresult">Pas de restaurants  :( <br><a href="index.html"><button type="button" class="btn btn-success btn-noresult">Recommencez la recherche</button></a>');
             }
             //Les restaurants sont mis dans l'ordre de distance
             data.businesses.sort(function (a, b) {
@@ -168,22 +167,7 @@ function manger() {
                     itineraire(winnie);
                 })
 
-
-
-                //Ancienne fonction click pour changer les markers
-                /*                 $("#busiResult" + i).click(function () {
-                                    winnie = $(this).attr("nbrattr");
-                                    for (o = 0; o < markers.length; o++) {
-                                        markers[o].setIcon();
-                                    }
-                                    colorChangeTest(winnie);
-                                    //alert(winnie);
-                                }); */
-                                
-                
-
             }
-            //console.log(data);
             
             /* Fonction hover et click des données récupérées */
             $(".donnee").hover(function() {
@@ -243,8 +227,6 @@ function colorChangeTest(nombrelol) {
     markers[nombrelol].setIcon('../img/marker-logo.png');
 }
 
-//$("#nom0").click(colorChange(0)); Test color change
-
 //Prépare les options de l'itinéraire
 directionsDisplay = new google.maps.DirectionsRenderer({
     polylineOptions: {
@@ -274,7 +256,6 @@ function itineraire(nombrelol) {
             $('.donnee_details[nbrattr="'+nombrelol+'"]').html('Temps estimé: ' + point.duration.text + ' (' + point.distance.text + ')');
             $('.donnee_details[nbrattr="'+nombrelol+'"]').css('height', '33px');
             $('.donnee_details[nbrattr="'+nombrelol+'"]').css('padding', '0.3em 0.3em 0.3em 2em');
-            //console.log($('.donnee_details[nbrattr="'+nombrelol+'"]'));
         }
     });
 
@@ -306,7 +287,6 @@ function itineraire2(destinationMarker, deev) {
 
 /* FONCTION HOVER ET CLIQUE de Business */
 function focusBusiness(deev) {
-    //console.log(deev);
     $(".donnee").removeClass('donnee_click');
     $(deev.parent()).addClass('donnee_click');
 }
