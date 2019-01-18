@@ -157,6 +157,7 @@ span{color: #F4D03F;}
 	cursor: pointer;
 	text-shadow: #000 0 0 5px;
 	color:#F4D03F;
+	text-transform: uppercase;
 }
 
 .car_arrow:hover {
