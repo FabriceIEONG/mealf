@@ -458,6 +458,13 @@ img{
 	overflow-y: auto;
 }
 
+@media (max-width: 767px) {
+	.lieu {
+		height: initial;
+		overflow: inherit;
+	}
+}
+
 .noresult {
 	color: #fff;
 	text-align: center;
@@ -534,6 +541,12 @@ img{
 	display: flex;
 	justify-content: center;
 	align-items: center;
+}
+
+@media (max-width: 767px) {
+	#loading {
+		min-height: 600px;
+	}
 }
 
 /*PAGE COMPTE*/
